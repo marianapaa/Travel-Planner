@@ -1,0 +1,152 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:    #185FA5;
+  --blue-lt: #E6F1FB;
+  --green:   #28C840;
+  --gray:    #f4f5f7;
+  --border:  #dde1e7;
+  --text:    #1a1a2e;
+  --muted:   #6b7280;
+  --radius:  10px;
+}
+
+body {
+  font-family: Georgia, serif;
+  background: var(--gray);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.site-header {
+  background: var(--blue);
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.logo { color: #fff; font-size: 22px; font-weight: bold; letter-spacing: 1px; }
+.search-bar { display: flex; gap: 8px; flex: 1; }
+.search-bar input {
+  flex: 1; padding: 10px 16px; border: none;
+  border-radius: var(--radius); font-size: 15px; outline: none; min-width: 0;
+}
+.search-bar button {
+  padding: 10px 22px; background: #fff; color: var(--blue);
+  border: none; border-radius: var(--radius); font-size: 15px;
+  font-weight: bold; cursor: pointer; transition: background 0.15s;
+}
+.search-bar button:hover { background: var(--blue-lt); }
+
+.layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  padding: 24px 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.panel {
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+.panel-title {
+  font-size: 16px; font-weight: bold; margin-bottom: 16px;
+  color: var(--blue); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.placeholder { color: var(--muted); font-size: 14px; }
+
+.place-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: box-shadow 0.15s;
+}
+.place-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.place-card h3 { font-size: 15px; margin-bottom: 4px; }
+.place-card .category {
+  font-size: 12px; background: var(--blue-lt); color: var(--blue);
+  padding: 2px 9px; border-radius: 20px;
+}
+.add-btn {
+  padding: 7px 14px; background: var(--blue); color: #fff;
+  border: none; border-radius: var(--radius); font-size: 13px;
+  cursor: pointer; white-space: nowrap; transition: background 0.15s;
+}
+.add-btn:hover { background: #134d87; }
+
+#tripItems { list-style: none; }
+#tripItems li {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+  font-size: 14px; gap: 8px;
+}
+#tripItems li:last-child { border-bottom: none; }
+.remove-btn {
+  background: none; border: none; color: #e53e3e;
+  font-size: 16px; cursor: pointer; flex-shrink: 0;
+}
+.remove-btn:hover { color: #c53030; }
+.empty-msg { color: var(--muted); font-size: 13px; margin-top: 8px; }
+
+.toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  padding: 13px 20px;
+  border-radius: var(--radius);
+  font-family: Georgia, serif;
+  font-size: 14px;
+  color: #fff;
+  z-index: 9999;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  animation: toast-in 0.25s ease;
+  max-width: 320px;
+  line-height: 1.5;
+}
+.toast.success { background: #1a7a2a; }
+.toast.error   { background: #b91c1c; }
+.toast.info    { background: var(--blue); }
+
+.toast-hide { animation: toast-out 0.35s ease forwards; }
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes toast-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(16px); }
+}
+/* --- КНОПКИ СОРТУВАННЯ --- */
+.sort-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.sort-buttons button {
+  flex: 1; /* щоб кнопки займали однакову ширину */
+  padding: 8px;
+  background: var(--blue-lt);
+  color: var(--blue);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.sort-buttons button:hover {
+  background: #cce0f5; /* трохи темніший синій при наведенні */
+}

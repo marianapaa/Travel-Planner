@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1 class="logo">✈ Travel Planner</h1>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search a city... e.g. Kyiv">
+      <button id="searchBtn">Search</button>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <section class="panel" id="resultsPanel">
+      <h2 class="panel-title">Results</h2>
+      <div id="results">
+        <p class="placeholder">Search for a city to see places.</p>
+      </div>
+    </section>
+
+    <aside class="panel" id="tripPanel">
+      <h2 class="panel-title">My Trip List</h2>
+      
+      <div class="sort-buttons">
+        <button onclick="sortTrip('name')">Sort by Name</button>
+        <button onclick="sortTrip('category')">Sort by Category</button>
+      </div>
+
+      <ul id="tripItems"></ul>
+      <p class="empty-msg" id="emptyMsg">Your list is empty. Add some places!</p>
+    </aside>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
