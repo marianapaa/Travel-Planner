@@ -1,0 +1,195 @@
+# Travel Planner Project Report
+
+## 1. Project Overview
+
+Travel Planner is a frontend-only web application developed for the **Problem Solving** course. The main goal of the project is to help users search for travel destinations and attractions, organize interesting places, and create a personal trip list.
+
+The application was created using **HTML**, **CSS**, and **JavaScript**. It uses public APIs to fetch city coordinates and place information. The project focuses on important problem-solving skills such as API integration, data filtering, sorting, LocalStorage usage, and user interface design.
+
+## 2. Problem Statement
+
+Planning a trip can be difficult because users usually need to search across many different websites to find attractions, restaurants, parks, museums, and entertainment locations. This makes the planning process time-consuming and unorganized.
+
+Travel Planner solves this problem by giving users a single interface where they can search for a city, view nearby places, filter and sort the results, and save selected locations into a personal trip list.
+
+## 3. Project Requirements
+
+The application implements the mandatory requirements of the project:
+
+- Searching for attractions and places by city name
+- Displaying result cards with place name, category, and basic information
+- Adding places to a personal Trip List
+- Removing places from the Trip List
+- Saving the Trip List persistently in LocalStorage
+- Sorting the Trip List by name or category
+
+The project also includes optional extensions:
+
+- Adding custom places through a form
+- Filtering results by category
+- Sorting results by distance
+- Displaying detailed information in a modal window
+- Showing a Google Maps link
+- Displaying places on an embedded Leaflet map
+- Caching recent search results in LocalStorage
+- Running basic unit tests for important functions
+
+## 4. Technologies Used
+
+### HTML5
+HTML is used to create the structure of the page, including the header, search bar, results section, trip list panel, custom place form, filter controls, and modal window.
+
+### CSS3
+CSS is used for the visual design of the application. It defines the layout, colors, spacing, cards, buttons, modal design, and responsive appearance.
+
+### JavaScript
+JavaScript controls the main behavior of the application. It handles the search function, API requests, rendering results, adding and removing trip list items, sorting, filtering, caching, and map display.
+
+### Fetch API
+The Fetch API is used to request data from external APIs.
+
+### LocalStorage
+LocalStorage is used to store the personal trip list and cached search results in the browser.
+
+### Geoapify Places API
+Geoapify Places API is used to fetch attractions, restaurants, parks, entertainment places, and other locations near a selected city.
+
+### OpenStreetMap / Nominatim
+Nominatim is used to convert the city name entered by the user into latitude and longitude coordinates.
+
+### Leaflet.js
+Leaflet.js is used to display an embedded interactive map inside the details modal.
+
+### Wikipedia API
+The Wikipedia API is used to fetch additional descriptions and images for selected places when available.
+
+## 5. How the Application Works
+
+The application follows this process:
+
+1. The user enters a city name in the search bar.
+2. The application sends a request to Nominatim to find the latitude and longitude of the city.
+3. The coordinates are used in a Geoapify Places API request.
+4. Geoapify returns a list of nearby attractions and places.
+5. The results are displayed as cards in the Results section.
+6. The user can filter places by category or sort them by distance.
+7. The user can add selected places to the personal Trip List.
+8. The Trip List is saved in LocalStorage.
+9. The user can sort the Trip List by name or category.
+10. The user can open a modal window to see details, a map, and a Google Maps link.
+
+## 6. API Key Handling
+
+The project uses Geoapify Places API, which requires an API key. The real API key is not included in the GitHub repository because API keys are sensitive information.
+
+To solve this, the project uses a separate local file called `config.js`. This file contains the real API key only on the user's computer. The repository includes a file called `config.example.js`, which shows the required format:
+
+```javascript
+const GEOAPIFY_API_KEY = "YOUR_GEOAPIFY_API_KEY_HERE";
+```
+
+The `index.html` file loads `config.js` before `app.js`, so the JavaScript code can access the API key locally without exposing it in the repository.
+
+## 7. LocalStorage and Caching
+
+LocalStorage is used for two purposes.
+
+First, when the user adds a place to the Trip List, the item is saved in LocalStorage. This means the list remains available even after refreshing or reopening the page.
+
+Second, the application caches recent search results in LocalStorage. If the same city is searched again, the application can use cached results instead of sending a new API request. This improves performance and helps reduce unnecessary API usage.
+
+## 8. Filtering and Sorting
+
+Filtering and sorting were implemented to make the application easier to use.
+
+Users can filter search results by category, such as all categories, tourism and sights, food and restaurants, or entertainment. Users can also sort results by distance, so the nearest locations appear first.
+
+The Trip List can be sorted by name or category. These features make the travel planning process more organized.
+
+## 9. User Interface Design
+
+The interface was designed to be simple and readable. The page is divided into two main areas:
+
+- **Results panel**: Shows the places found after a search.
+- **My Trip List panel**: Shows the places selected by the user.
+
+This layout allows users to search and organize their trip at the same time.
+
+The design uses a blue color palette, rounded cards, clear buttons, and simple spacing. Toast notifications were added to provide feedback when a place is added, removed, duplicated, or when an error occurs.
+
+A modal window was added for place details. This allows users to see more information without leaving the main page.
+
+## 10. Testing
+
+The project includes basic unit tests for important functions. These tests can be run in the browser console.
+
+The tests check:
+
+1. Duplicate protection in the Trip List
+2. Alphabetical sorting by name
+3. Distance sorting from nearest to farthest
+
+These tests help confirm that the main logic of the application works correctly.
+
+## 11. Challenges and Solutions
+
+### Challenge 1: Missing API Data
+
+Some places returned by the API do not include complete information such as address, description, image, or category.
+
+**Solution:** The application uses fallback values such as “Unnamed place” or “No detailed address provided.” This prevents the interface from breaking when some data is missing.
+
+### Challenge 2: API Key Security
+
+The API key should not be uploaded to GitHub.
+
+**Solution:** The real key is stored in a local `config.js` file. The repository only includes `config.example.js` to show the required format.
+
+### Challenge 3: Avoiding Too Many API Requests
+
+Repeated searches for the same city can create unnecessary API requests.
+
+**Solution:** Recent search results are cached in LocalStorage. This allows the application to reuse previous results.
+
+### Challenge 4: Organizing Results
+
+A large number of places can be difficult to browse.
+
+**Solution:** Filtering by category and sorting by distance were added to make the results easier to use.
+
+## 12. Evaluation of Requirements
+
+| Requirement | Implemented |
+|---|---|
+| Search by city using public API | Yes |
+| Display place name, category, and basic information | Yes |
+| Add places to Trip List | Yes |
+| Remove places from Trip List | Yes |
+| Save Trip List in LocalStorage | Yes |
+| Sort Trip List by name or category | Yes |
+
+Optional extensions:
+
+| Optional Extension | Implemented |
+|---|---|
+| Custom place form | Yes |
+| Detailed view | Yes |
+| Image and description support | Yes, when available |
+| Location link | Yes |
+| Category filtering | Yes |
+| Distance sorting | Yes |
+| Embedded map | Yes |
+| LocalStorage cache | Yes |
+| Basic unit tests | Yes |
+
+## 13. Future Improvements
+
+The application could be improved in the future by adding user accounts, saving multiple trip plans, drag-and-drop trip list ordering, route planning between selected places, more advanced rating-based sorting, mobile interface improvements, and exporting the trip list as a PDF or text file.
+
+## 14. Conclusion
+
+Travel Planner successfully meets the main goals of the Problem Solving project. It allows users to search for places using public APIs, view a clear list of results, add and remove places from a personal trip list, and save the list using LocalStorage.
+
+The project also includes optional features such as category filtering, distance sorting, custom place creation, map integration, search caching, and basic testing.
+
+Overall, the application demonstrates practical use of frontend technologies, API integration, data management, and user-centered design.
